@@ -1,0 +1,18 @@
+.container {
+    margin: 0 auto;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.box {
+    margin: 0 auto 20px auto;
+    border: 3px solid black;
+    padding: 75px 50px;
+    width: 150px;
+    color: white;
+}
+.incorrect {
+    background-color: #ff0000;
+}
+.correct {
+    background-color: #00ff00;
+}

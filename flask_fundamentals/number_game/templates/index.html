@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Great Number Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Great Number Game!</h1>
+        <p>I am thinking of a number between 1 and 100.</p>
+        <p>Take a guess!</p>
+        {% if not session['answered'] or session['input'] == undefined %}
+        <form action="/submit" method="post">
+            <input type="text" name="number" id="number">
+            <input type="submit" value="Submit">
+        </form>
+        {% elif session['input'] == session['number'] %}
+        <div class="box correct">
+            <h1>Correct!</h1>
+            <form action="/reset">
+                <input type="submit" value="Play again!">
+            </form>
+        </div>
+        {% elif session['input'] < session['number'] %}
+        <div class="box incorrect">
+            <h1>Too low!</h1>
+        </div>
+        <form action="/submit" method="post">
+            <input type="text" name="number" id="number">
+            <input type="submit" value="Submit">
+        </form>
+        {% elif session['input'] > session['number'] %}
+        <div class="box incorrect">
+            <h1>Too high!</h1>
+        </div>
+        <form action="/submit" method="post">
+            <input type="text" name="number" id="number">
+            <input type="submit" value="Submit">
+        </form>
+        {% endif %}
+    </div>
+</body>
+</html>

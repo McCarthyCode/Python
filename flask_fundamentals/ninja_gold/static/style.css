@@ -1,0 +1,19 @@
+.container {
+    margin: 0 auto;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.blocks {
+    margin-top: 20px;
+}
+.blocks > div {
+    display: inline-block;
+    width: 20%;
+    border: 2px solid black;
+    padding: 20px 0;
+}
+textarea[name='history'] {
+    margin-top: 20px;
+    width: 82%;
+    text-align: left;
+}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{title}}</title>
+</head>
+<body>
+    {% if title == 'Ninjas' %}
+    <img src="{{ url_for('static', filename='img/tmnt.png') }}">
+    {% elif title == 'Leonardo' %}
+    <img src="{{ url_for('static', filename='img/leonardo.jpg') }}">
+    {% elif title == 'Michelangelo' %}
+    <img src="{{ url_for('static', filename='img/michelangelo.jpg') }}">
+    {% elif title == 'Raphael' %}
+    <img src="{{ url_for('static', filename='img/raphael.jpg') }}">
+    {% elif title == 'Donatello' %}
+    <img src="{{ url_for('static', filename='img/donatello.jpg') }}">
+    {% else %}
+    <img src="{{ url_for('static', filename='img/notapril.jpg') }}">
+    {% endif %}
+</body>
+</html>

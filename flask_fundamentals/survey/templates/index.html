@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dojo Survey</title>
+</head>
+<body>
+    <div>
+        <form action="/result" method="post">
+            <table>
+                <tr>
+                    <td>
+                        <label for="name">Your Name:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="name">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="location">Dojo Location:</label>
+                    </td>
+                    <td>
+                        <select name="location" id="location">
+                            <option value="Silicon Valley">Silicon Valley</option>
+                            <option value="Seattle">Seattle</option>
+                            <option value="Los Angeles">Los Angeles</option>
+                            <option value="Dallas">Dallas</option>
+                            <option value="Washington DC">Washington DC</option>
+                            <option value="Chicago">Chicago</option>
+                            <option value="Tulsa">Tulsa</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="language">Favorite Language:</label>
+                    </td>
+                    <td>
+                        <select name="language" id="language">
+                            <option value="HTML">HTML</option>
+                            <option value="CSS">CSS</option>
+                            <option value="JavaScript">JavaScript</option>
+                            <option value="Python">Python</option>
+                            <option value="C#">C#</option>
+                            <option value="PHP">PHP</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <label for="comment">Comment (optional)</label><br>
+            <textarea name="comment" id="comment" cols="30" rows="5"></textarea><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
