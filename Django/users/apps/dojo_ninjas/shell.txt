@@ -1,0 +1,100 @@
+(djangoEnv) matt@mark-laptop:~/Repositories/CodingDojo/Python/Django/users$ python manage.py shell
+Python 2.7.12 (default, Nov 20 2017, 18:23:56)
+[GCC 5.4.0 20160609] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> Dojo.objects.create(name='Coding Dojo Silicon Valley', city='Mountain View', state='CA')
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'Dojo' is not defined
+>>> from apps.dojo_ninjas.models import Dojo, Ninja
+>>> Dojo.objects.create(name='Coding Dojo Silicon Valley', city='Mountain View', state='CA')
+<Dojo: Dojo object>
+>>> Dojo.objects.create(name='Coding Dojo Seattle', city='Seattle', state='WA')
+<Dojo: Dojo object>
+>>> Dojo.objects.create(name='Coding Dojo New York', city='New York', state='NY')
+<Dojo: Dojo object>
+>>> Dojo.objects.get(id=1)
+<Dojo: Dojo object>
+>>> Dojo.objects.get(id=1).id
+1
+>>> Dojo.objects.all().id
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'QuerySet' object has no attribute 'id'
+>>> Dojo.objects.all().first().id
+1
+>>> Dojo.objects.get(id=1).delete()
+(1, {u'dojo_ninjas.Ninja': 0, u'dojo_ninjas.Dojo': 1})
+>>> Dojo.objects.all().first().id
+2
+>>> Dojo.objects.get(id=2).delete()
+(1, {u'dojo_ninjas.Ninja': 0, u'dojo_ninjas.Dojo': 1})
+>>> Dojo.objects.get(id=3).delete()
+(1, {u'dojo_ninjas.Ninja': 0, u'dojo_ninjas.Dojo': 1})
+>>> Dojo.objects.create(name='Coding Dojo Silicon Valley', city='Mountain View', state='CA')
+<Dojo: Dojo object>
+>>> Dojo.objects.create(name='Coding Dojo Seattle', city='Seattle', state='WA')
+<Dojo: Dojo object>
+>>> Dojo.objects.create(name='Coding Dojo New York', city='New York', state='NY')
+<Dojo: Dojo object>
+>>> Dojo.objects.first().id
+4
+>>> Ninja.objects.create(dojo_id=4, first_name='John', last_name='Doe')
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "/home/matt/Repositories/CodingDojo/Environments/djangoEnv/local/lib/python2.7/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/matt/Repositories/CodingDojo/Environments/djangoEnv/local/lib/python2.7/site-packages/django/db/models/query.py", line 397, in create
+    obj = self.model(**kwargs)
+  File "/home/matt/Repositories/CodingDojo/Environments/djangoEnv/local/lib/python2.7/site-packages/django/db/models/base.py", line 537, in __init__
+    setattr(self, field.name, rel_obj)
+  File "/home/matt/Repositories/CodingDojo/Environments/djangoEnv/local/lib/python2.7/site-packages/django/db/models/fields/related_descriptors.py", line 211, in __set__
+    self.field.remote_field.model._meta.object_name,
+ValueError: Cannot assign "4": "Ninja.dojo_id" must be a "Dojo" instance.
+>>> Dojo.objects.get(id=4)
+<Dojo: Dojo object>
+>>> Ninja.objects.create(dojo_id=Dojo.objects.get(id=4), first_name='John', last_name='Doe')
+<Ninja: Ninja object>
+>>> Ninja.objects.create(dojo_id=Dojo.objects.get(id=4), first_name='Jane', last_name='Doe')
+<Ninja: Ninja object>
+>>> Ninja.objects.create(dojo_id=Dojo.objects.get(id=4), first_name='Matt', last_name='McCarthy')
+<Ninja: Ninja object>
+>>> Ninja.objects.create(dojo_id=Dojo.objects.get(id=5), first_name='John', last_name='Stamos')
+<Ninja: Ninja object>
+>>> Ninja.objects.create(dojo_id=Dojo.objects.get(id=5), first_name='Steve', last_name='Austin')
+<Ninja: Ninja object>
+>>> Ninja.objects.create(dojo_id=Dojo.objects.get(id=5), first_name='Ricardo', last_name='Sanchez')
+<Ninja: Ninja object>
+>>> Ninja.objects.create(dojo_id=Dojo.objects.get(id=6), first_name='Morty', last_name='Smith')
+<Ninja: Ninja object>
+>>> Ninja.objects.create(dojo_id=Dojo.objects.get(id=6), first_name='Stan', last_name='Marsh')
+<Ninja: Ninja object>
+>>> Ninja.objects.create(dojo_id=Dojo.objects.get(id=6), first_name='Eric', last_name='Cartman')
+<Ninja: Ninja object>
+>>> Ninja.objects.filter(dojo_id=Dojo.objects.get(id=4))
+<QuerySet [<Ninja: Ninja object>, <Ninja: Ninja object>, <Ninja: Ninja object>]>
+>>> Ninja.objects.filter(dojo_id=Dojo.objects.first())
+<QuerySet [<Ninja: Ninja object>, <Ninja: Ninja object>, <Ninja: Ninja object>]>
+>>> Ninja.objects.filter(dojo_id=Dojo.objects.last())
+<QuerySet [<Ninja: Ninja object>, <Ninja: Ninja object>, <Ninja: Ninja object>]>
+>>>
+KeyboardInterrupt
+>>>
+(djangoEnv) matt@mark-laptop:~/Repositories/CodingDojo/Python/Django/users$ python manage.py makemigrations
+You are trying to add a non-nullable field 'desc' to dojo without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 2
+(djangoEnv) matt@mark-laptop:~/Repositories/CodingDojo/Python/Django/users$ python manage.py makemigrations
+Migrations for 'dojo_ninjas':
+  apps/dojo_ninjas/migrations/0002_dojo_desc.py:
+    - Add field desc to dojo
+(djangoEnv) matt@mark-laptop:~/Repositories/CodingDojo/Python/Django/users$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, dojo_ninjas, sessions, user_login
+Running migrations:
+  Rendering model states... DONE
+  Applying dojo_ninjas.0002_dojo_desc... OK
+(djangoEnv) matt@mark-laptop:~/Repositories/CodingDojo/Python/Django/users$

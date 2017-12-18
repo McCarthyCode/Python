@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wall</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+        integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+        crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+            <a class="navbar-brand" href="/wall">Wall</a>
+            <span class="nav-item navbar-text navbar-right">
+                Welcome, {{ name }} –
+                <a class="nav-item" href="/logout">Log Out</a>
+            </span>
+        </nav>
+        <form action="/message" method="POST">
+            <textarea name="message" id="message" placeholder="Write a message."
+                class="form-control"></textarea>
+            <input type="submit" value="Submit" class="btn">
+        </form>
+        {% if messages %}
+            {% for message in messages %}
+        <div class="message">
+            <div class="header">
+                <h6>{{ message['first_name'] }} {{ message['last_name'] }} – {{ message['date_posted'] }}</h6>
+                {% if message['user_id'] == session['id'] %}
+                <span>–</span>
+                <form action="/delete" method="POST">
+                    <input type="hidden" name="user_id" value="{{ message['user_id'] }}">
+                    <input type="hidden" name="message_id" value="{{ message['message_id'] }}">
+                    <input type="submit" value="Delete Message">
+                </form>
+                {% endif %}
+            </div>
+            <p>{{ message['message'] }}</p>
+                {% if comments %}
+                    {% for comment in comments %}
+                        {% if comment['message_id'] == message['message_id'] %}
+            <div class="comment">
+                <h6>{{ comment['first_name'] }} {{ comment['last_name'] }} – {{ comment['date_posted'] }}</h6>
+                <p>{{ comment['comment'] }}</p>
+            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            <form class="comment" action="/comment" method="POST">
+                <textarea name="comment" id="comment" placeholder="Write a comment." class="form-control"></textarea>
+                <input type="hidden" name="message_id" value="{{ message['message_id'] }}">
+                <input type="submit" value="Submit" class="btn">
+            </form>
+        </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>

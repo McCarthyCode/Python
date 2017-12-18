@@ -8,6 +8,8 @@ app.secret_key = 'alohomora'
 @app.route('/')
 def index():
     if 'gold' not in session or 'history' not in session:
+        session['gold'] = 0
+        session['history'] = []
         return redirect('/')
 
     return render_template('index.html')
@@ -53,8 +55,7 @@ def process_money():
 
 @app.route('/reset')
 def reset():
-    session['gold'] = 0
-    session['history'] = []
+    session.clear()
     return redirect('/')
 
 app.run(debug=True)

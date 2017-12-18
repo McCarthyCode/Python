@@ -1,0 +1,10 @@
+h3 {
+    margin-top: 15px !important;
+}
+tr:nth-child(even) {
+    background-color: #eeeeee;
+}
+label {
+    width: 50px;
+    text-align: right;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Email Validation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+        integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+        crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        {% with messages = get_flashed_messages(category_filter=["message"]) %}
+            {% if messages %}
+                {% for message in messages %}
+        <div class="alert alert-success" role="alert">
+            <p>{{ message }}</p>
+        </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <p><a href="/">Back to email submit page</a></p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Date Added</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                <tr>
+                    <td>{{ row['email'] }}</td>
+                    <td>{{ row['date_added'] }}</td>
+                    <td class="align-center">
+                        <form action="/delete" method="POST">
+                            <input type="hidden" name="id" value="{{ row['id'] }}">
+                            <input type="submit" value="✖">
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

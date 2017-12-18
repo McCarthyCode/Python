@@ -1,0 +1,33 @@
+.form-control {
+    max-width: 330px;
+    margin: 0 auto;
+}
+table {
+    border-top: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+}
+th:first-child,
+td:first-child {
+    border-left: 1px solid #cccccc;
+}
+th, td {
+    padding: 0 15px !important;
+    border-right: 1px solid #cccccc;
+}
+tr:nth-child(even), body {
+    background-color: #eeeeee !important;
+}
+.page {
+    background-color: white;
+    border: 1px solid #cccccc;
+    padding: 15px;
+}
+thead {
+    background-color: #ddddff;
+}
+.mt-15px {
+    margin-top: 15px;
+}
+.center {
+    text-align: center;
+}

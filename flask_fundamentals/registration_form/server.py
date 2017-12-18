@@ -18,9 +18,9 @@ def index():
 @app.route('/submit', methods=['POST'])
 def submit():
     # store values in session variables
-    for i in request.form:
+    for i in ['email', 'first_name', 'last_name', 'birthday']:
         session[i] = request.form[i]
-    
+
     # define regular expressions and error flag
     # note: the following email regex is used in <input type='email'> from W3C
     # (except here the apostrophe character is replaced with its unicode value)
@@ -44,9 +44,7 @@ def submit():
         errors_exist = True
     
     # first and last name may only contain letters
-    if len(request.form['first_name']) == 0 and len(request.form['last_name']) == 0:
-        pass
-    elif not name_regex.match(request.form['first_name']) or not name_regex.match(request.form['last_name']):
+    if (len(request.form['first_name']) == 0 or not name_regex.match(request.form['first_name'])) and (len(request.form['last_name']) or not name_regex.match(request.form['last_name'])) == 0:
         flash('Error: First and last name may not contain numbers or special characters.', 'error')
         errors_exist = True
     
@@ -72,13 +70,12 @@ def submit():
 
     # passwords should match
     if request.form['password'] != request.form['confirm_password']:
-        print request.form['password']
-        print request.form['confirm_password']
         flash('Error: Passwords do not match.', 'error')
         errors_exist = True
 
     # flash a happy green alert if all criteria are met
     if not errors_exist:
+        session.clear()
         flash('Your information has been submitted successfully.')
     
     return redirect('/')

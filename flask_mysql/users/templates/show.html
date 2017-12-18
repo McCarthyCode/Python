@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Users Show</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+        integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+        crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        {% if rows %}
+            {% for row in rows %}
+        <h3>User {{ row['id'] }}</h3>
+        <h6>Full Name: {{ row['first_name'] }} {{ row['last_name'] }}</h6>
+        <h6>Email: {{ row['email'] }}</h6>
+        <h6>Created at: {{ row['date'] }}</h6>
+        <div class="mt-15px">
+            <a href="/users/{{ row['id'] }}/edit">Edit</a> | 
+            <a href="/users/{{ row['id'] }}/destroy">Delete</a> |
+            <a href="/users">Go Back</a>
+        </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>

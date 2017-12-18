@@ -1,0 +1,14 @@
+insert into users (username) value ('matt');
+select * from users;
+insert into blogs (title) value ("Matt's Blog");
+select * from blogs;
+insert into admins (user_id, blog_id) value (1, 1);
+select * from users
+	join admins on users.id = admins.user_id
+	join blogs on blogs.id = admins.blog_id;
+insert into posts (user_id, blog_id, content)
+    value (1, 1, "Hello, world!");
+insert into posts (user_id, blog_id, content)
+    value (1, 1, "Do you like my blog?");
+select * from users
+    join posts on posts.user_id = users.id;

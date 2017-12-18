@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Books</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'books/css/style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+</head>
+<body>
+    <div class="container page">
+        <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+            <span class="navbar-brand">
+                Welcome, {{ name }}!
+            </span>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="nav-item" href="{% url 'books:add' %}">Add Book and Review</a>
+                </li>
+                <li>
+                    <a class="nav-item" href="{% url 'login:index' %}">Log Out</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="row">
+            <div class="col-md-8">
+                <h4>Recent Book Reviews:</h4>
+            </div>
+            <div class="col-md-4">
+                <h4>Other Books with Reviews:</h4>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

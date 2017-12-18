@@ -1,0 +1,21 @@
+h3,
+.alert,
+input[type="submit"],
+.mt-15px {
+    margin-top: 15px !important;
+}
+tr:nth-child(even) {
+    background-color: #eeeeee;
+}
+.alert p {
+    margin: 0;
+}
+.form-control {
+    max-width: 330px;
+}
+.form-control:not(:first-child) {
+    margin-top: 3px;
+}
+th, td {
+    padding: 0 15px;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Users Index</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+        integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+        crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h3>Users</h3>
+        <table>
+            <tr>
+                <th>id</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Created At</th>
+                <th>Actions</th>
+            </tr>
+            {% for row in rows %}
+            <tr>
+                <td>{{row['id']}}</td>
+                <td>{{row['first_name']}} {{row['last_name']}}</td>
+                <td>{{row['email']}}</td>
+                <td>{{row['date']}}</td>
+                <td>
+                    <a href="/users/{{row['id']}}">Show</a>
+                    <a href="/users/{{row['id']}}/edit">Edit</a>
+                    <a href="/users/{{row['id']}}/destroy">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/users/new">Add a new user</a>
+    </div>
+</body>
+</html>

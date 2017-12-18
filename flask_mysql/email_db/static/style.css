@@ -1,0 +1,18 @@
+.container, .alert, .submit-email, table {
+    margin-top: 15px;
+}
+.alert p {
+    margin: 0;
+}
+thead {
+    border-bottom: 1px solid black;
+}
+tbody tr:nth-child(odd) {
+    background-color: #eeeeee;
+}
+td, th {
+    padding: 0 15px;
+}
+.align-center {
+    text-align: center;
+}

@@ -1,0 +1,43 @@
+(djangoEnv) matt@mark-laptop:~/Repositories/CodingDojo/Python/Django/users$ python manage.py shell
+Python 2.7.12 (default, Nov 20 2017, 18:23:56)
+[GCC 5.4.0 20160609] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from apps.user_login.models import *
+>>> User.objects.all()
+<QuerySet []>
+>>> User.objects.create(first_name='Matt', last_name='McCarthy', email='mattmc318@gmail.com', age=24)
+<User: User object>
+>>> User.objects.all()
+<QuerySet [<User: User object>]>
+>>> User.objects.count()
+1
+>>> User.objects.create(first_name='Jerry', last_name='Smith', email='example@domain.com', age=52)
+<User: User object>
+>>> User.objects.all()
+<QuerySet [<User: User object>, <User: User object>]>
+>>> User.objects.order_by('first_name')
+<QuerySet [<User: User object>, <User: User object>]>
+>>> User.objects.name.order_by('first_name')
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'unicode' object has no attribute 'order_by'
+>>> User.objects.first_name.order_by('first_name')
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Manager' object has no attribute 'first_name'
+>>> User.objects.all().first_name.order_by('first_name')
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'QuerySet' object has no attribute 'first_name'
+>>> User.objects.all().first_name
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'QuerySet' object has no attribute 'first_name'
+>>> User.objects.all()
+<QuerySet [<User: User object>, <User: User object>]>
+>>> User.objects.first().first_name
+u'Matt'
+>>> User.objects.all().order_by('first_name').first().first_name
+u'Jerry'
+>>>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Show User {{user_id}}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'rest/css/style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+</head>
+<body>
+    <div class="container page mt-15px">
+        <h1>User {{user_id}}</h1>
+        <h5>Full Name: {{ first_name }} {{ last_name }}</h5>
+        <h5>Email: {{ email }}</h5>
+        <h5>Created at: {{ created_at }}</h5>
+        <div class="mt-15px">
+            <a href="{% url 'edit' user_id=user_id %}">Edit</a> |
+            <a href="{% url 'destroy' user_id=user_id %}">Delete</a> |
+            <a href="{% url 'index' %}">Go Back</a>
+        </div>
+    </div>
+</body>
+</html>

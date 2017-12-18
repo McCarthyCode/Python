@@ -12,32 +12,32 @@
 </head>
 <body>
     <div class="container">
-        {% with messages = get_flashed_messages(category_filter=["message"]) %}
+        {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
-                {% for message in messages %}
+                {% for category, message in messages %}
+                    {% if category == 'message' %}
         <div class="alert alert-success" role="alert">
-            <p>{{message}}</p>
-        </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-        {% with errors = get_flashed_messages(category_filter=["error"]) %}
-            {% if errors %}
-                {% for error in errors %}
+                    {% elif category == 'error' %}
         <div class="alert alert-danger" role="alert">
-            <p>{{error}}</p>
+                    {% endif %}
+            <p>{{ message }}</p>
         </div>
                 {% endfor %}
             {% endif %}
         {% endwith %}
 
         <form action="/submit" method="POST" class="form-signin">
-            <input type="text" name="email" placeholder="Email" value="{{session['email']}}" class="form-control">
-            <input type="text" name="first_name" placeholder="First Name" value="{{session['first_name']}}" class="form-control">
-            <input type="text" name="last_name" placeholder="Last Name" value="{{session['last_name']}}" class="form-control">
-            <input type="text" name="birthday" placeholder="Date of Birth (MM/DD/YYYY)" value="{{session['birthday']}}" class="form-control">
+            <input type="text" name="email" placeholder="Email"
+                value="{{ session['email'] }}" class="form-control">
+            <input type="text" name="first_name" placeholder="First Name"
+                value="{{ session['first_name'] }}" class="form-control">
+            <input type="text" name="last_name" placeholder="Last Name"
+                value="{{ session['last_name'] }}" class="form-control">
+            <input type="text" name="birthday" placeholder="Date of Birth (MM/DD/YYYY)"
+                value="{{ session['birthday'] }}" class="form-control">
             <input type="password" name="password" placeholder="Password" class="form-control">
-            <input type="password" name="confirm_password" placeholder="Confirm Password" class="form-control">
+            <input type="password" name="confirm_password" placeholder="Confirm Password"
+                class="form-control">
             <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
         </form>
     </div>
